@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="css/welcome.css">
+
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <title>Raksha TN</title>
+
+</head>
+<body>
+  <!-- Navigation -->
+  <nav id="navigation" class="navbar navbar-dark navbar-expand-md bg-dark">
+    <img class="navbar-brand" src="img/logo.svg" alt=" " width="50px" height="50px">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
+          <div class="dropdown-menu" aria-labelledby="dropdown01">
+            <a class="dropdown-item" th:href="'/profile/' + ${appUser?.username}">Profile</a>
+            <a class="dropdown-item" href="#">Customize</a>
+            <a class="dropdown-item" href="/logout">Log out</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/">Create post</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input id="searchInput" class="col-sm-8 form-control mr-sm-2" type="text" placeholder="Search for users" aria-label="Search">
+        <div onclick="onSearchClick()" class="col-sm-2 btn btn-outline-light" style="cursor:pointer;"><i class="fa fa-search"></i></div>
+      </form>
+    </div>
+  </nav>
+
+  <main role="main" class="container bg-1">
+    <div class="row">
+      <div class="col-sm-2 buttons-sidebar">
+        <a class="w-100 ml-auto mt-5 row btn" th:href="'/profile/' + ${appUser?.username}">
+          <img src="img/user.svg" width="30px" height="30px">
+            <p th:text="${appUser?.username}"></p>
+        </a>
+
+        <div class="w-100 ml-auto mb-5 row btn-group-vertical">
+          <a class="btn btn-outline-primary" th:href="'/profile/' + ${appUser?.username}">Profile</a>
+          <a class="btn btn-outline-primary" th:href="'/friends/' + ${appUser?.username}">Friends</a>
+          <a class="btn btn-outline-primary">Other users</a>
+        </div>
+        <div class="w-100 ml-auto mb-5 row btn-group-vertical">
+          <a class="btn btn-outline-dark">Groups</a>
+          <a class="btn btn-outline-dark">All posts</a>
+          <a class="btn btn-outline-dark" href="/chat">Global chat</a>
+          <a class="btn btn-outline-dark">Chats</a>
+          <a class="btn btn-outline-dark">Settings</a>
+          <a class="btn btn-outline-dark">About project</a>
+
+        </div>
+      </div>
+
+      <div class="col-sm-8 posts">
+      <div id="hello-jumbotron" class="jumbotron">
+        <div class="container">
+          <h2 class="display-4" th:text="'Hello, ' + ${appUser?.username}"></h2>
+          <p>Welcome Back!</p>
+          <p><a class="btn btn-primary btn-lg" href="#" role="button">Customize your account &raquo;</a></p>
+        </div>
+      </div>
+
+      <div class="mb-3 list-group-item flex-column align-items-start">
+        <h5>Create post</h5>
+        <form class="post-form input-group mb-3" th:action="@{/submit-post}" th:object="${appPost}" method="post" enctype="multipart/form-data">
+          <div class="input-group">
+            <textarea th:field="*{content}" class="form-control" aria-label="Content"></textarea>
+          </div>
+          <hr>
+          <div class="ml-auto mr-auto row input-group">
+            <label for="file" class="custom-file"><span class="btn btn-light btn-block">
+              <img src="/img/picture.svg" width="20px" height="20px">Choose image
+            </span></label>
+            <input id="file" type="file" name="file" class="col-sm-8 image-upload form-control" accept="image/*">
+            <button class="col-sm-4 btn btn-primary submit-button" type="submit" >PUBLISH</button>
+          </div>
+        </form>
+      </div>
+
+      <div id="posts-container" class="list-group">
+      </div>
+      </div>
+
+      <div class="col-sm-2 active-users-sidebar">
+        <div class="container position-absolute">
+          <div class="row mt-5 alert">
+            Active users
+          </div>
+          <div id="active-users-list">
+            <button type="button" class="row mt-1 btn btn-light btn-lg btn-block btn-active-user"><img src="img/user.svg" width="20px" height="20px">  Username</button>
+          </div>
+
+          <div class="row mt-5 alert">
+            Active groups
+          </div>
+          <button type="button" class="row mt-1 btn btn-light btn-block btn-active-user"><img src="img/team.svg" width="20px" height="20px">  Group name</button>
+          <button type="button" class="row mt-1 btn btn-light btn-block btn-active-user"><img src="img/team.svg" width="20px" height="20px">  Group name</button>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- JQUERY -->
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+  <!-- BOOTSTRAP -->
+  <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+
+  <script type="text/javascript" src="js/users.js"></script>
+
+  <script th:inline="javascript">
+    const PROFILE_NAME = /*[[${appUser?.username}]]*/ "";
+    const POSTS_URL = "/rest/posts/friendsAndUser/" + PROFILE_NAME;
+  </script>
+  <script type="text/javascript" src="js/posts.js"></script>
+
+  <script type="text/javascript" src="js/search.js"></script>
+
+</body>

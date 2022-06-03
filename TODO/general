@@ -1,0 +1,22 @@
+SharingOverload:
+	Board users section:
+		- each user can set their avatar and some data
+
+		- each user has their own board, where they post:
+			* images
+			* text
+			* videos ?
+
+		- the post can be reacted and commented
+
+		- each user can send friend request, if someone accepts
+			they they will see his/her posts on main page
+			and chat
+
+		- there is main page where all your friend's posts go
+
+	Chat section:
+		- you can chat with any friend
+
+	Games:
+		- challange a friend in game (such as chess)

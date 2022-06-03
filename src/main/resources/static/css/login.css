@@ -1,0 +1,46 @@
+html {
+    overflow-x: hidden;
+}
+
+#navigation {
+    min-height: 5vh;
+    background-color: rgb(59,89,152) !important;
+}
+
+.card {
+    padding: 1vw;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.logo-image {
+    width: 25vh;
+}
+
+.input-group, main{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: space-evenly !important;
+}
+
+main {
+    padding: 10vw;
+}
+
+.btn-primary {
+    background-color: rgb(59,89,152) !important;
+}
+
+.form-control{
+    min-width: 30vw;
+    margin-top: 10px;
+}
+
+.btn {
+    width: 30vw;
+    margin-top: 20px;
+}
+
+.login-footer {
+    margin-top: 10px;
+}

@@ -1,0 +1,81 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:400,700);
+body {
+  background: #f0f0f0 !important;
+  font-family: 'Lato', 'sans-serif';
+}
+
+html {
+  overflow-x: hidden;
+}
+
+#navigation {
+    background-color: rgb(59,89,152) !important;
+}
+
+#hello-jumbotron {
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#a0d8ef+0,feffff+1,ddf1f9+83 */
+  background: #a0d8ef; /* Old browsers */
+  background: -moz-linear-gradient(top,  #a0d8ef 0%, #feffff 1%, #ddf1f9 83%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  #a0d8ef 0%,#feffff 1%,#ddf1f9 83%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  #a0d8ef 0%,#feffff 1%,#ddf1f9 83%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a0d8ef', endColorstr='#ddf1f9',GradientType=0 ); /* IE6-9 */
+}
+
+.nav-item:hover {
+  background-color: rgb(79,109,172) !important;
+}
+
+.buttons-sidebar {
+  border-right: 2px solid #eaeaea;
+}
+
+.active-users-sidebar {
+  border-left: 2px solid #eaeaea;
+}
+
+.btn-primary {
+  background-color: rgb(59,89,152) !important;
+  border: 1px solid rgb(59,89,152) !important;
+}
+
+.btn-primary:hover {
+  background-color: #f2f2f2 !important;
+  color: rgb(59,89,152) !important;
+}
+
+.btn-outline-primary {
+  color: rgb(59,89,152) !important;
+}
+
+.btn-outline-primary:hover {
+  background-color: rgb(59,89,152) !important;
+  color: #f2f2f2 !important;
+}
+
+.btn-active-user {
+  font-size: 16px !important;
+  background: none !important;
+}
+
+.btn-active-user:hover {
+  background-color: #feffff !important;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file {
+
+  cursor: pointer;
+}
+
+.post-item:hover {
+  background-color: #f0f0f0 !important;
+}
+
+textarea {
+  outline: none !important;
+  -moz-outline-style: none !important;
+  resize: none !important;
+}

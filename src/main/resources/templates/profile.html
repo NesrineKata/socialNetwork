@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/css/welcome.css">
+
+    <title>Profile</title>
+
+</head>
+<body>
+<!-- Navigation -->
+<nav id="navigation" class="navbar navbar-dark navbar-expand-md bg-dark">
+    <img class="navbar-brand" src="/img/logo.svg" alt=" " width="50px" height="50px">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item dropdown active">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                    <a class="dropdown-item" th:href="'/profile/' + ${appUser?.username}">Profile</a>
+                    <a class="dropdown-item" href="#">Customize</a>
+                    <a class="dropdown-item" href="/logout">Log out</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Create post</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input id="searchInput" class="col-sm-8 form-control mr-sm-2" type="text" placeholder="Search for users" aria-label="Search">
+            <div onclick="onSearchClick()" class="col-sm-2 btn btn-outline-light" style="cursor:pointer;"><i class="fa fa-search"></i></div>
+        </form>
+    </div>
+</nav>
+
+<main role="main" class="container bg-1">
+    <div class="row">
+
+        <div class="mt-5 col-sm-10 text-center">
+            <div class="well profile">
+                <div class="col-sm-12">
+                        <h2 th:text="${appUserProfile?.username}"></h2>
+                        <img class="mb-5" src="/img/user.svg" width="100px" height="100px">
+                        <p><strong>About: </strong> Not set</p>
+                        <p><strong>Hobbies: </strong> Not set</p>
+                        <p><strong>Skills: </strong> Not set</p>
+                </div>
+                <div class="col-xs-12 divider text-center">
+                    <p><small>Friends</small></p>
+                    <a class="btn btn-success w-50" th:href="'/friends/make-friends/' + ${appUserProfile?.username}"><span class="fa fa-plus-circle"></span>Add friend</a>
+                    <a class="btn btn-primary w-50 mt-1" th:href="'/friends/' + ${appUserProfile?.username}"><span class="fa fa-user"></span> Show friends </a>
+                </div>
+            </div>
+
+            <div id="posts-container" class="list-group">
+            </div>
+        </div>
+
+
+        <div class="col-sm-2 active-users-sidebar">
+            <div class="container position-absolute">
+                <div class="row mt-5 alert">
+                    Active users
+                </div>
+                <div id="active-users-list">
+                    <button type="button" class="row mt-1 btn btn-light btn-lg btn-block btn-active-user"><img src="/img/user.svg" width="20px" height="20px">  Username</button>
+                </div>
+
+                <div class="row mt-5 alert">
+                    Active groups
+                </div>
+                <button type="button" class="row mt-1 btn btn-light btn-block btn-active-user"><img src="/img/team.svg" width="20px" height="20px">  Group name</button>
+                <button type="button" class="row mt-1 btn btn-light btn-block btn-active-user"><img src="/img/team.svg" width="20px" height="20px">  Group name</button>
+
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- JQUERY -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+<!-- BOOTSTRAP -->
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+
+<script type="text/javascript" src="/js/users.js"></script>
+
+<script th:inline="javascript">
+    const PROFILE_NAME = /*[[${appUserProfile?.username}]]*/ "";
+    const POSTS_URL = "/rest/posts/" + PROFILE_NAME;
+</script>
+
+<script type="text/javascript" src="/js/posts.js"></script>
+
+<script type="text/javascript" src="/js/search.js"></script>
+
+</body>
